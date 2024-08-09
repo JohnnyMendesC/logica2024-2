@@ -1,0 +1,28 @@
+git status
+//checa quais pastas estão commitadas, vermelho não, verde sim
+
+git add .
+//o . envia a pasta atual
+
+git commit -m "TituloDoTrabalhoFeito - Pode ser qualquer coisa"
+//adiciona o titulo daquele commit
+//ele gera um código hash tipo [f507432] que pode ser usado como um 
+//ctrl+z usando o comando
+
+git reset ff65432 mixed/hard/soft
+//hard apaga tudo
+//mixed volta para tudo vermelho
+//soft volta para tudo verde
+
+git log
+//mostra os dados do commit com hora, nome, email e titulo
+
+git remote add origin ENDEREÇO
+//
+
+git remote -v
+//checa o remote add
+
+git push -u origin main
+//faz o commit envia os arquivos pro github
+//precisa do usuario e do token ou senha
