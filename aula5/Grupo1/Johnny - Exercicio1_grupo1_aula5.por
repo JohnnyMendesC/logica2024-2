@@ -7,27 +7,32 @@
 programa
 {
 
-    funcao inicio()
-    {
-
-        cadeia nomes[5]
-        real alturas[5]
-
-        para (inteiro i = 0; i < 5; i++)
-        {
-                escreva("Nome : ")
-                leia(nomes[i])
-                escreva("Altura: ")
-                leia(alturas[i])
-
-                enquanto(alturas[i]<0)
-                {
-				escreva("Digite uma altura superior a zero: ")
-				leia(alturas[i])
-			}
-
-        }
-    }
+	funcao inicio()
+	{
+	
+	   	cadeia nomes[5]
+	   	real alturas[5]
+	
+	   	para (inteiro i = 0; i < 5; i++)
+	   	{
+	           	escreva("Nome : ")
+	           	leia(nomes[i])
+	           	escreva("Altura: ")
+	           	leia(alturas[i])
+	
+	           	enquanto(alturas[i]<0)
+	           	{
+					escreva("Digite uma altura superior a zero: ")
+					leia(alturas[i])
+				}
+	
+	   	}
+	   	escreva("\nOs nomes e alturas registradas são: ")
+	   	para(inteiro i=0; i < 5; i++)
+	   	{
+			escreva("\nNome: ",nomes[i],"\t\t\t | Altura: ",alturas[i], "m")
+	   	}
+	}
 
 }
 /* $$$ Portugol Studio $$$ 
@@ -35,7 +40,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 659; 
+ * @POSICAO-CURSOR = 432; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
