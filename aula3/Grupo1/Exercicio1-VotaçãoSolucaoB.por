@@ -25,6 +25,8 @@ programa
 			senao se(opcaoVoto==3){ opcaoBrancos+=1}
 			senao se(opcaoVoto>3){ opcaoNulos+=1}
 			senao{escreva("\nAtenção! Votação Encerrada\n")}
+			//colocando um senao se a mais definindo o senao como um escreva garante
+			//que o 0 não conte como nulo e ainda que o zero declare "Votação Encerrada"
 		}			
 		enquanto(opcaoVoto!=0)
 		totalVotos=opcaoA+opcaoB+opcaoBrancos+opcaoNulos
@@ -50,7 +52,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 782; 
+ * @POSICAO-CURSOR = 971; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
