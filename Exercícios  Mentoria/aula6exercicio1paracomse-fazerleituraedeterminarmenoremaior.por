@@ -9,11 +9,11 @@ b. A maior altura do grupo;*/
 	{
 		real maiorAltura=0, menorAltura=999999, alturas[15], nMaior=0, nMenor=0
 		escreva("Digite 15 alturas: \n")
-		para(inteiro i=0; i<3; i++)
+		para(inteiro i=0; i<3; i++) //estrutura de laço de repetição
 		{
 			escreva("Digite a altura da pessoa Nº", i+1," - ")
 			leia(alturas[i])
-				se(alturas[i]>maiorAltura)
+				se(alturas[i]>maiorAltura) //estrutura de condição
 				{
 					maiorAltura=alturas[i]
 					nMaior=i					
@@ -34,7 +34,7 @@ b. A maior altura do grupo;*/
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 380; 
+ * @POSICAO-CURSOR = 360; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
