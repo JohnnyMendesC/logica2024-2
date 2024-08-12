@@ -58,8 +58,11 @@ programa
 										escreva("Reserva ", (i+1), " - Status: ", nome[i])//informador da reserva para ajudar a entender qual nome vai cair nela
 										escreva(". Escreva o seu nome: ")
 										leia(nome[i])
-											se (nome[i]=="Vago")
-												{escreva("Nome inválido\n", i--)}
+											se (nome[i]=="Vago")												 
+												{
+													i-- //filtro para refazer o mesmo nome/reserva até inserir opção valido e ir para o proximo
+													escreva("Nome inválido\n")
+												}
 											senao
 												{
 												reserva[i]=0//filtro para ocupar a reserva específica deste nome
@@ -76,25 +79,29 @@ programa
 												//	VIROU 
 												//	se(reserva[i]>0 e quantosDesejado>quantos)
 												//
-												//NO SABADO E DOMINGO TENTOU-SE MODIFICAR O i DO PARA, QUE NÃO FUNCIONOU
-												//No final a ideia de ficar perguntando a cada nome, se gostaria de adicionar
-												//outro não funcionou, e nem parece que seria uma boa solução no sentido de
+												//NO SABADO E DOMINGO TENTOU-SE MODIFICAR O i DO para, QUE NÃO FUNCIONOU
+												//A ideia era de ficar perguntando a cada nome, se gostaria de adicionar
+												//outro e não funcionou, e nem parece que seria uma boa solução no sentido de
 												//automatizar. O ideal é como acabou ficando, primeiro pergunta quantos
 												//convidados quer adicionar e aí adiciona esse numero e pronto, sem perguntar
 												//nada alem disso.
 												//Outro desafio era de manter o buscador indo até 50 enquanto se limitava a
 												//adicionar somente a quantidade desejada. 
-												//Dessa forma, se voce remove 2 convidados, da reserva 3 e da reserva 49 por 										
+												//Dessa forma, se voce remove 2 convidados, da "reserva3" e da "reserva49" por 										
 												//exemplo, ao adicionar mais 2 nomes, o buscador encontra ambas reservas livres
-												//dentro dos 50 nome e preenche exatamente elas ao invés de tentar preencher
-												//tudo de novo, ou, preencher somente as reserva 1 e 2 sempre, ou, nem acha-la
-												//por estarem acima do 2 se limitando a buscar somente as primeiras reservas.
-												//Analise:
+												//dentro dos 50 nomes, independenta da posição, e preenche exatamente elas ao 
+												//invés de tentar preencher tudo de novo, ou, preencher somente as reserva 1 e 2 
+												//que seriam a primeiras a aparecer sempre, ou, nem acha-la por estarem acima 
+												//do 2 se limitando a buscar somente as primeiras reservas e achando que não
+												//teria mais vagas.
+												//
+												//Analise das tentativas anteriores:
 												//A tentativa 1 talvez funcionasse caso seguisse essa lógica usada acima.
 												//O problema seria que ela estaria propensa a erros de digitação ou se
 												//tornaria muito mecanica, tendo que confirmar que deseja adicionar mais um
 												//o tempo todo, ou tendo que escrever "Sair" para finalizar.
-												//Dito isso, ainda não sei porque não foi possível modificar o i diretamente.
+												//Dito isso, ainda não sei porque não foi possível modificar o i diretamente
+												//como foi tentado nelas abaixo.
 												 
 		
 												
@@ -121,31 +128,32 @@ programa
 														caso 'S': volte=0
 														pare
 														}
-														i=i+volte			*/		
+														i=i+volte			//a ideia era fazer o contador i passar de 50 e encerrar o loop do comando para, mas sem modificar ele caso decidisse continuar o loop de adições
+														*/		
 												}													
 									}
 									senao
 									{
-										confirmacao=falso																			
+										confirmacao=falso//token que sai da opção 1 automaticamente quando condição é atingida																		
 									}
 									
 								}												
 							}
-							quantos=0
+							quantos=0//reseta os quantos
 							quantosDesejado=50 // reseta os quantos antes de sair para nao interferir no proximo adicionar
 							
-							se(quantidade_convidados==50) // se a lista bater 50 convidados, ela diz que encheu
+							se(quantidade_convidados==50) // se a lista bater 50 convidados, ela diz que encheu antes de sair
 								{
 								escreva("A lista de convidados está completa. \nSe desejar alterar ou remover alguma reserva, prossiga para a opção 3 do Menu.\n")//aviso aparece quando confirmacao==falso, ou seja quando não ha mais vagas
-								leia(ok)////leia usado somente para não voltar direto para o menu e poder ver a lista com calma
+								leia(ok)//leia usado somente para não voltar direto para o menu e poder ver a lista com calma
 								}
 							senao
 								{
 								escreva("Nomes adicionados com sucesso.") // se a lista adiciona o numero desejado mas ainda tem vagas, ela somente diz que adicionou com sucesso
+								leia(ok)
 								}
 						}
 						
-						//
 				se(opcao==2) 
 						{
 						limpa()
@@ -157,7 +165,6 @@ programa
 							leia(ok)//leia usado somente para não voltar direto para o menu e poder ver a lista com calma
 						}
 						
-						//
 				se(opcao==3)
 						{
 							limpa()
@@ -178,6 +185,7 @@ programa
 								}
 							}
 						}
+						
 				se(opcao==4)
 						{
 							limpa()
@@ -202,7 +210,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 2406; 
+ * @POSICAO-CURSOR = 2540; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = {i, 20, 97, 1};
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
