@@ -26,3 +26,8 @@ git remote -v
 git push -u origin main
 //faz o commit envia os arquivos pro github
 //precisa do usuario e do token ou senha
+
+
+se aparecer END e não der para digitar mais nada aperta ":" e digita "q"
+//:q
+aí ele volta
