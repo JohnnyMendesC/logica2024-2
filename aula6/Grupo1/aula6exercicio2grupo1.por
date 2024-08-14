@@ -34,7 +34,7 @@ programa
 										
 				}				
 			}
-		escreva("Este número não existe na Matriz.\n")
+		//escreva("Este número não existe na Matriz.\n")
 			
 	}
 }
@@ -43,7 +43,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 918; 
+ * @POSICAO-CURSOR = 889; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = {matriz, 11, 10, 6};
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
