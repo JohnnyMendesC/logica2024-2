@@ -1,0 +1,42 @@
+==git==
+
+echo "Aula de Git" > teste.txt //um > cria ou sobrescreve
+
+cat teste.txt //diz o conteudo do arquivo
+
+echo "Serratec 2024" >> teste.txt // dois >> adiciona no final
+
+comando+(aperta tab) // exibe todos comandos com aquele nome
+mk+(aperta tab)
+passw+(aperta tab)
+
+ls // lista o conteudo da pasta
+
+ls -la // mostra dr wxr xr x // dr=directory, w=write, x=erase, x=execute
+
+git reset teste.txt // remove da area de stage, sai do verde pro vermelho
+
+ssh //usado para conectar a um server
+
+git branch -M main // sai do master e vai pro main
+git branch // mostra a sua branch
+git branch -a// mostra a branch do github
+git branch nomedabranch //cria a branch com esse nome
+git checkout nomedabranch// vai pra essa branch
+(quando voce sai da main e vai pra outra branch, ele apaga o que não está push e abre o ambiente de trabalho desta branch)
+
+git merge nomedabranch // mescla os arquivos com a branch selecionada
+
+git config
+
+git log // mostra o historico(onde tem o hash para retornar backup)
+
+cd .. // volta uma pasta dentro do diretorio/caminho
+
+==CMD==
+
+ipconfig //mostra informações basicas da conexao
+
+netstat | more //mostra conexoes
+
+netstat -na | more //mostra portas
