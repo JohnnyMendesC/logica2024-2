@@ -1,15 +1,13 @@
 programa
 {
-	inclua biblioteca Util
 	// Vetores separados para consultas e internações
 	cadeia dadosConsulta[2000][3]
-	cadeia dadosInternacao[2000][4]
+	cadeia dadosInternacao[2000][3]
 	inteiro totalConsultas = 0
 	inteiro totalInternacoes = 0
 	real faturamentoConsultas = 0
 	real faturamentoInternacoes = 0
 	inteiro quartosInternacao[20]
-	cadeia ok
 
 	funcao inicio()
 	{       	
@@ -24,8 +22,7 @@ programa
 	{
 		inteiro opcao
 		faca
-		{	
-			escreva("\tHOSPITAL - XPTO")
+		{
 			escreva("\n----------------------------------\n") 
 			escreva("1-Consulta Ambulatorial\n")
 			escreva("2-Internação\n")
@@ -64,14 +61,13 @@ programa
 	{
 		cadeia nome, numero
 		inteiro especialidade
-		
 		escreva("\nDigite o nome do paciente: ")
 		leia(nome)
 		dadosConsulta[totalConsultas][0] = nome
 		escreva("\nDigite o número do paciente: ")
 		leia(numero)
 		dadosConsulta[totalConsultas][1] = numero
-		escreva("\n1 - Pediatria\n2 - Outros \nDigite a especialidade:")
+		escreva("Digite a especialidade:\n1 - Pediatria\n2 - Outros ")
 		leia(especialidade)
 		
 		se(especialidade == 1)
@@ -87,28 +83,13 @@ programa
 		
 		
 		totalConsultas = totalConsultas + 1
-		limpa()
-		escreva("Carregando: [......")
-		para (inteiro i = 0; i <= 5; i++)
-        {
-            escreva("...")
-            Util.aguarde(350) // Espera 0.2 segundos para cada iteração
-        }
-
-        escreva("] 100%\n")
-        escreva("Carregamento concluído!\n")
 		escreva("Consulta cadastrada com sucesso!\n")
-		escreva("Caso deseje adicionar outro paciente pressione ENTER, se desejar voltar para o menu digite 1:\n")
-		leia(ok)
-		se(ok==""){limpa()	consulta()}senao{limpa() menu()}
-		
 	}
 	
 	funcao internacao()
 	{
 		cadeia nome, numero
 		inteiro quarto
-		inteiro segundos=0
 		escreva("\nDigite o nome do paciente: ")
 		leia(nome)
 		dadosInternacao[totalInternacoes][0] = nome
@@ -119,19 +100,6 @@ programa
 		
 		escreva("Digite o número do quarto (1-20): ")
 		leia(quarto)
-		dadosInternacao[totalInternacoes][3]="Q"+quarto
-		limpa()
-		escreva("Carregando: [......")
-		para (inteiro i = 0; i <= 5; i++)
-        {
-            escreva("...")
-            Util.aguarde(550) // Espera 0.2 segundos para cada iteração
-        }
-
-        escreva("] 100%\n")
-        escreva("Carregamento concluído!\n")
-		//escreva("Verificando se o quarto escolhido está disponível: ")
-		
 		
 		se(quarto >= 1 e quarto <= 20)
 		{
@@ -154,9 +122,6 @@ programa
 		{
 			escreva("Número do quarto inválido!\n")
 		}
-		escreva("Caso deseje adicionar outro paciente pressione ENTER, se desejar voltar para o menu digite 1:\n")		
-		leia(ok)
-		se(ok==""){limpa()	internacao()}senao{limpa()	menu()}
 	}
 
 	funcao listagemVagas()
@@ -176,15 +141,6 @@ programa
 
 	funcao faturamento()
 	{
-		escreva("\nCONSULTAS:\n")
-		para(inteiro i=0; i < totalConsultas; i++){
-		escreva(dadosConsulta[i][0],", ",dadosConsulta[i][1],", ",dadosConsulta[i][2],"\n")
-		}
-		escreva("\nINTERNAÇÕES:\n")
-		para(inteiro i=0; i < totalInternacoes; i++){
-		escreva(dadosInternacao[i][0],", ",dadosInternacao[i][1],", ",dadosInternacao[i][2],", ",dadosInternacao[i][3],"\n")
-		}
-		
 		escreva("\nNúmero de Consultas: ", totalConsultas)
 		escreva("\nNúmero de Internações: ", totalInternacoes)
 		escreva("\nFaturamento de Consultas: R$ ", faturamentoConsultas)
@@ -198,10 +154,10 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 3759; 
- * @DOBRAMENTO-CODIGO = [13];
+ * @POSICAO-CURSOR = 2128; 
+ * @DOBRAMENTO-CODIGO = [11, 23, 20];
  * @PONTOS-DE-PARADA = ;
- * @SIMBOLOS-INSPECIONADOS = {dadosConsulta, 5, 8, 13}-{dadosInternacao, 6, 8, 15};
+ * @SIMBOLOS-INSPECIONADOS = {dadosConsulta, 4, 8, 13}-{dadosInternacao, 5, 8, 15}-{totalConsultas, 6, 9, 14};
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
  * @FILTRO-ARVORE-TIPOS-DE-SIMBOLO = variavel, vetor, matriz, funcao;
  */

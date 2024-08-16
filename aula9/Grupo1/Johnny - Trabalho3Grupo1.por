@@ -1,63 +1,218 @@
 programa
-{//Algoritmo para faturamento hospitalar
+{
+	inclua biblioteca Util
+	// Vetores separados para consultas e internações
+	cadeia dadosConsulta[2000][3]
+	cadeia dadosInternacao[2000][4]
+	inteiro totalConsultas = 0
+	inteiro totalInternacoes = 0
+	real faturamentoConsultas = 0
+	real faturamentoInternacoes = 0
 	inteiro quartosInternacao[20]
-	
+	cadeia ok
+
 	funcao inicio()
-	{
-		para(inteiro i=0; i < 20; i++){
-			quartosInternacao[i]=0
-			
+	{       	
+		para(inteiro i = 0; i < 20; i++) 
+		{
+			quartosInternacao[i] = 0
 		}
-	menu()	
-	}
-	funcao menu(){
-		inteiro opcao
-		cadeia ok
+		menu()
+	}
 	
-		escreva("\nHOSPITAL - XPTO")
-		escreva("\n-----------------------")
-		escreva("\n1-Consulta Ambulatorial") 			
-		escreva("\n2-Internação")
-		escreva("\n3-Listar Quartos")
-		escreva("\n4-Faturamento")
-		escreva("\n0-Sair do Programa")
-		escreva("\n-----------------------\n")
-		escreva("Digite uma das opções listadas acima: ")
-		
-		leia(opcao)
-		escolha(opcao){
-			caso 1: escreva("1-Consulta Ambulatorial:") 			
-			pare
+	funcao menu()
+	{
+		inteiro opcao
+		faca
+		{	
+			escreva("\n\tHOSPITAL - XPTO")
+			escreva("\n----------------------------------\n") 
+			escreva("1-Consulta Ambulatorial\n")
+			escreva("2-Internação\n")
+			escreva("3-Listar quartos\n")
+			escreva("4-Faturamento\n")
+			escreva("0-Sair do programa\n")
+			escreva("----------------------------------\n")
+			escreva("Escolha uma opção: ")
+			leia(opcao)
 			
-			caso 2: escreva("2-Internação")
-			pare
-			
-			caso 3: escreva("3-Listar Quartos")
-			pare
-			
-			caso 4: escreva("4-Faturamento")
-			pare
+			escolha (opcao)
+			{
+				caso 1:
+					consulta()
+					pare
+				caso 2:
+					internacao()
+					pare
+				caso 3:
+					listagemVagas()
+					pare
+				caso 4:
+					faturamento()
+					pare
+				caso 0:
+					escreva("\nO programa será encerrado.\n") confirmacaoDesligamento()
+					pare
+				caso contrario:
+					escreva("\nOpção inexistente. Tente novamente.\n")
+			}
+		}
+		enquanto (opcao != 0)
+	}
 
-			caso 0: escreva("0-Sair do Programa")
-			pare
-			
-			caso contrario: escreva("Opção inválida. Digite uma das opções listadas") leia(ok) menu()
-			pare
+	funcao consulta()
+	{
+		cadeia nome, numero
+		inteiro especialidade
+		
+		escreva("\nDigite o nome do paciente: ")
+		leia(nome)
+		dadosConsulta[totalConsultas][0] = nome
+		escreva("\nDigite o número do paciente: ")
+		leia(numero)
+		dadosConsulta[totalConsultas][1] = numero
+		escreva("\n1 - Pediatria\n2 - Outros \nDigite a especialidade:")
+		leia(especialidade)
+		
+		se(especialidade == 1)
+		{
+			dadosConsulta[totalConsultas][2] = "Pediatria"
+			faturamentoConsultas = faturamentoConsultas + 150.00
+		}
+		senao
+		{
+			dadosConsulta[totalConsultas][2] = "Outra Especialidade"
+			faturamentoConsultas = faturamentoConsultas + 120.00
+		}
+		
+		
+		totalConsultas = totalConsultas + 1
+		limpa()
+		escreva("Carregando: [......")
+		para (inteiro i = 0; i <= 5; i++)
+        {
+            escreva("...")
+            Util.aguarde(350) // Espera 0.2 segundos para cada iteração
+        }
+
+        escreva("] 100%\n")
+        escreva("Carregamento concluído!\n")
+		escreva("Consulta cadastrada com sucesso!\n")
+		escreva("Caso deseje adicionar outro paciente pressione ENTER, se desejar voltar para o menu digite 1:\n")
+		leia(ok)
+		se(ok==""){limpa()	consulta()}senao{limpa() menu()}
+		
+	}
+	
+	funcao internacao()
+	{
+		cadeia nome, numero
+		inteiro quarto
+		inteiro segundos=0
+		escreva("\nDigite o nome do paciente: ")
+		leia(nome)
+		dadosInternacao[totalInternacoes][0] = nome
+		
+		escreva("\nDigite o número do paciente: ")
+		leia(numero)
+		dadosInternacao[totalInternacoes][1] = numero
+		
+		escreva("Digite o número do quarto (1-20): ")
+		leia(quarto)
+		dadosInternacao[totalInternacoes][3]="Q"+quarto
+		limpa()
+		escreva("Buscando quarto: [......")
+		para (inteiro i = 0; i <= 5; i++)
+        {
+            escreva("...")
+            Util.aguarde(550) // Espera 0.2 segundos para cada iteração
+        }
+
+        escreva("] 100%\n")
+        escreva("Busca concluída!\n")
+		//escreva("Verificando se o quarto escolhido está disponível: ")
+		
+		
+		se(quarto >= 1 e quarto <= 20)
+		{
+			se(quartosInternacao[quarto-1] == 0)
+			{
+				quartosInternacao[quarto-1] = 1
+				
+				
+				dadosInternacao[totalInternacoes][2] = "Internação"
+				totalInternacoes = totalInternacoes + 1
+				faturamentoInternacoes = faturamentoInternacoes + 500.00
+				escreva("Quarto reservado com sucesso!\n")
+			}
+			senao
+			{
+				escreva("Não foi possível efetuar a reserva pois este quarto está ocupado!\nTente outro quarto.\n")
+			}
+		}
+		senao
+		{
+			escreva("O número do quarto é inválido! Não foi possível concluir a reserva.\nTente um número entre 1 e 20.\n")
+		}
+		escreva("Caso deseje adicionar outro paciente pressione ENTER, se desejar voltar para o menu digite 1:\n")		
+		leia(ok)
+		se(ok==""){limpa()	internacao()}senao{limpa()	menu()}
+	}
+
+	funcao listagemVagas()
+	{
+		para(inteiro i = 0; i < 20; i++)
+		{
+			se(quartosInternacao[i] == 0)
+			{
+				escreva("Quarto ", i+1, ": Desocupado\n")
+			}
+			senao
+			{
+				escreva("Quarto ", i+1, ": Ocupado\n")
+			}
 		}
 	}
 
-	funcao internacao(){
+	funcao faturamento()
+	{
+		escreva("\nCONSULTAS:\n")
+		para(inteiro i=0; i < totalConsultas; i++){
+		escreva(dadosConsulta[i][0],", ",dadosConsulta[i][1],", ",dadosConsulta[i][2],"\n")
+		}
+		escreva("\nINTERNAÇÕES:\n")
+		para(inteiro i=0; i < totalInternacoes; i++){
+		escreva(dadosInternacao[i][0],", ",dadosInternacao[i][1],", ",dadosInternacao[i][2],", ",dadosInternacao[i][3],"\n")
+		}
 		
+		escreva("\nNúmero de Consultas: ", totalConsultas)
+		escreva("\nNúmero de Internações: ", totalInternacoes)
+		escreva("\nFaturamento de Consultas: R$ ", faturamentoConsultas)
+		escreva("\nFaturamento de Internações: R$ ", faturamentoInternacoes)
+		escreva("\nFaturamento Total: R$ ", faturamentoConsultas + faturamentoInternacoes, "\n")
 	}
+
+	funcao confirmacaoDesligamento(){
+		
+			cadeia confirmacaoDesligamento
+
+			escreva("Tem certeza que deseja desligar o sistema? [S/N]=")
+			leia(confirmacaoDesligamento)
+			se(confirmacaoDesligamento=="N" ou confirmacaoDesligamento=="n"){limpa() escreva("Desligamento cancelado. O programa retornou ao menu")menu()}senao{powerOFF()}
+			
+	}
+	funcao powerOFF(){}
 }
+
 /* $$$ Portugol Studio $$$ 
  * 
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 991; 
+ * @POSICAO-CURSOR = 3756; 
+ * @DOBRAMENTO-CODIGO = [13];
  * @PONTOS-DE-PARADA = ;
- * @SIMBOLOS-INSPECIONADOS = {quartosInternacao, 3, 9, 17};
+ * @SIMBOLOS-INSPECIONADOS = {dadosConsulta, 5, 8, 13}-{dadosInternacao, 6, 8, 15};
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
  * @FILTRO-ARVORE-TIPOS-DE-SIMBOLO = variavel, vetor, matriz, funcao;
  */
